@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #main {
+            width: 300px;
+            height: 200px;
+            border: 2px solid #000;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        #dupe {
+            width: 100px;
+            height: 50px;
+            background-color: #66cc66;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <p>Drop the "dupe" div here</p>
+    </div>
+
+    <div id="dupe" draggable="true" ondragstart="drag(event)">Drag me!</div>
+
+    <script>
+        var originalPosition;
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            originalPosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            var draggedElement = document.getElementById(data);
+
+            if (event.target.id === "main") {
+                event.target.appendChild(draggedElement);
+                alert("Happy Birthday!");
+
+                // Move the element back to its original position
+                draggedElement.style.position = 'absolute';
+                draggedElement.style.left = originalPosition.x - (draggedElement.offsetWidth / 2) + 'px';
+                draggedElement.style.top = originalPosition.y - (draggedElement.offsetHeight / 2) + 'px';
+            }
+        }
+    </script>
+</body>
+</html>

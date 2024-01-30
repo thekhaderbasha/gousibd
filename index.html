@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Matchstick</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+
+        .candle-container {
+            position: relative;
+        }
+
+        .candle {
+            width: 15em;
+            height: 30em;
+            font-size: 7px;
+            background: linear-gradient(
+                orange,
+                darkorange,
+                sienna,
+                saddlebrown 50%,
+                rgba(0, 0, 0, 0.6)
+            );
+            box-shadow: inset 2em -3em 5em rgba(0, 0, 0, 0.4),
+                inset -2em 0 54m rgba(0, 0, 0, 0.4);
+            border-radius: 10em / 4em;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            top: 10em;
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            width: inherit;
+            height: 5em;
+            border: 0.2em solid darkorange;
+            box-sizing: border-box;
+            border-radius: 50%;
+            background: linear-gradient(
+                #444,
+                orange,
+                saddlebrown,
+                sienna,
+                darkorange
+            );
+            filter: opacity(0.7);
+        }
+
+        .thread {
+            position: absolute;
+            width: 0.6em;
+            height: 3.6em;
+            top: -1.8em;
+            background: linear-gradient(
+                #111,
+                black,
+                orange 90%
+            );
+            border-radius: 40% 40% 0 0;
+        }
+
+        .flames {
+            position: absolute;
+            width: 2.4em;
+            display: none;
+            transition: opacity 5s ease; /* Added smooth transition */
+        }
+
+        .flames::before {
+            content: '';
+            position: absolute;
+            width: inherit;
+            height: 6em;
+            background-color: royalblue;
+            top: -4em;
+            border-radius: 50% 50% 35% 35%;
+            border: 0.2em solid dodgerblue;
+            box-sizing: border-box;
+            filter: opacity(0.7);
+        }
+
+        .flames::after {
+            content: '';
+            position: absolute;
+            width: inherit;
+            height: 12em;
+            top: -12em;
+            background: linear-gradient(white 80%, transparent);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 -0.6em 0.4em darkorange;
+            animation: enlarge 5s linear infinite,
+                move 6s linear infinite;
+        }
+
+        @keyframes move {
+            0%, 100% {
+                transform: rotate(2deg);
+            }
+            50% {
+                transform: rotate(-2deg);
+            }
+        }
+
+        @keyframes enlarge {
+            0%, 100% {
+                height: 12em;
+                top: -12em;
+            }
+            50% {
+                height: 14em;
+                top: -13em;
+            }
+        }
+
+        .glow {
+            position: absolute;
+            width: 10em;
+            height: 18em;
+            background-color: orangered;
+            border-radius: 50%;
+            top: -17em;
+            filter: blur(6em);
+            animation: blink 500ms infinite;
+        }
+
+        @keyframes blink {
+            to {
+                filter: blur(6em) opacity(0.8);
+            }
+        }
+
+        .smoke-waves {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/ZTzZKjT.png') repeat-x; /* You can replace this with your own smoke image */
+            animation: smokeAnimation 5s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes smokeAnimation {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            25% {
+                transform: translateY(-20%);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(-40%);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateY(-60%);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-80%);
+                opacity: 0;
+            }
+        }
+
+        .matchstick {
+            position: absolute;
+            width: 4em;
+            height: 15em;
+            background: linear-gradient(
+                #8B4513,
+                #8B4513 50%,
+                #2F4F4F 50%,
+                #2F4F4F
+            );
+            border-radius: 0.5em 0.5em 1.5em 1.5em;
+            top: 12em;
+            left: 5em;
+            cursor: pointer;
+        }
+
+        .matchstick::before {
+            content: '';
+            position: absolute;
+            width: 0.6em;
+            height: 8em;
+            background: linear-gradient(
+                #2F4F4F,
+                #2F4F4F 50%,
+                #8B4513 50%,
+                #8B4513
+            );
+            border-radius: 0.5em 0.5em 0 0;
+            top: 1em;
+            left: 1.7em;
+        }
+
+        .matchstick::after {
+            content: '';
+            position: absolute;
+            width: 4.8em;
+            height: 0.6em;
+            background: #8B4513;
+            border-radius: 0.5em 0.5em 0 0;
+            top: 9em;
+        }
+
+        .matchstick-head {
+            position: absolute;
+            width: 1.5em;
+            height: 1.5em;
+            background: #FFD700;
+            border-radius: 50%;
+            top: 0.5em;
+            left: 1.7em;
+        }
+
+        .matchstick-head::before {
+            content: '';
+            position: absolute;
+            width: 0.6em;
+            height: 1.2em;
+            background: #FFD700;
+            border-radius: 0.5em 0.5em 0 0;
+            top: 0.6em;
+            left: 0.3em;
+        }
+
+        .matchstick-head::after {
+            content: '';
+            position: absolute;
+            width: 0.6em;
+            height: 0.6em;
+            background: #8B4513;
+            border-radius: 0 0 0.5em 0.5em;
+            top: 1.8em;
+            left: 0.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="candle-container">
+        <div class="candle" id="candle">
+            <span class="thread"></span>
+            <span class="flames">
+                <span class="glow"></span>
+            </span>
+            <span class="smoke-waves"></span>
+        </div>
+
+        <div class="matchstick" id="matchstick" draggable="true" ondragstart="drag(event)"></div>
+    </div>
+
+    <audio id="candleSound" loop>
+        <source src="your-candle-sound.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        let candleInterval;
+
+        function startCandle() {
+            const flames = document.querySelector('.flames');
+            const candleSound = document.getElementById('candleSound');
+
+            // Start the audio when the candle starts
+            candleSound.play();
+
+            flames.style.display = 'block';
+
+            setTimeout(() => {
+                candleInterval = setInterval(blinkGlow, 500);
+            }, 2000);
+        }
+
+        function stopCandle() {
+            const flames = document.querySelector('.flames');
+            const smokeWaves = document.querySelector('.smoke-waves');
+            const candleSound = document.getElementById('candleSound');
+
+            flames.style.display = 'none';
+            clearInterval(candleInterval);
+
+            // Pause the audio when the candle stops
+            candleSound.pause();
+
+            // Show animated smoke waves
+            smokeWaves.style.opacity = '1';
+
+            // Show matchstick again
+            document.getElementById('matchstick').style.display = 'block';
+        }
+
+        function blinkGlow() {
+            const glow = document.querySelector('.glow');
+            glow.style.filter = 'blur(6em) opacity(0.8)';
+            setTimeout(() => {
+                glow.style.filter = 'blur(6em)';
+            }, 250);
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData('text', event.target.id);
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const matchstick = document.getElementById(event.dataTransfer.getData('text'));
+
+            // Check if the matchstick is dropped onto the candle thread
+            if (isMatchstickOnCandle(event.clientX, event.clientY)) {
+                // Hide matchstick
+                matchstick.style.display = 'none';
+
+                // Start the candle
+                startCandle();
+            }
+        }
+
+        function isMatchstickOnCandle(x, y) {
+            const candle = document.getElementById('candle');
+            const rect = candle.getBoundingClientRect();
+            return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+        }
+    </script>
+</body>
+</html>
