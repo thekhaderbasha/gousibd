@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Alert</title>
+    <style>
+        .drag-box {
+            width: 100px;
+            height: 50px;
+            border: 2px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1" class="drag-box" draggable="true">Div 1</div>
+<div id="div2" class="drag-box" ondrop="drop(event)" ondragover="allowDrop(event)">Div 2</div>
+
+<script>
+    document.getElementById('div1').addEventListener('dragstart', function (event) {
+        event.dataTransfer.setData('text/plain', 'div1');
+    });
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData('text/plain');
+        if (data === 'div1') {
+            alert('You dropped Div 1 onto Div 2!');
+        }
+    }
+</script>
+
+</body>
+</html>
