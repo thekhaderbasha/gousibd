@@ -3,40 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drag and Drop Alert</title>
-    <style>
-        .drag-box {
-            width: 100px;
-            height: 50px;
-            border: 2px solid #ccc;
-            margin: 10px;
-            padding: 10px;
-            cursor: move;
-        }
-    </style>
+    <title>Document</title>
 </head>
+<!-- ----------------------css name -------------------------------- -->
+<!-- <style>
+body{
+    background-color: black;
+}
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color:  #151719;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+  font-size: 60px;
+}
+.waviy span {
+  font-family: 'Alfa Slab One', cursive;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(.1s * var(--i));
+  
+}
+@keyframes waviy {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-20px)
+  }
+} -->
+<!-- </style> -->
+
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+  body {
+    background-image: url(images/bg4.jpg);
+    background-repeat: no-repeat;
+    font-family: 'Waiting for the Sunrise', cursive; 
+    font-size:20px; 
+    margin: 10px 50px; 
+    color: rgb(0, 0, 0);
+    letter-spacing: 5px; 
+    font-weight: bold;
+    
+  }
+</style>
+<!-- -----------------------html name------------------------------------ -->
 <body>
+  <!-- <div class="typing-container">
+    <span id="sentence" class="sentence"></span>
+    <span class="input-cursor"></span>
+  </div>
+    Happy birthday gousi -->
+    <!-- <div class="giftbox">
+        <img src="images/giftbox.gif" alt=""> -->
+    <!-- </div> -->
+    <!-- <div class="waviy">
+        <span style="--i:1">H</span>
+        <span style="--i:2">A</span>
+        <span style="--i:3">P</span>
+        <span style="--i:4">P</span>
+        <span style="--i:5">Y</span>&nbsp;
+        <span style="--i:6">B</span>
+        <span style="--i:7">I</span>
+        <span style="--i:8">R</span>
+        <span style="--i:9">T</span>
+        <span style="--i:10">H</span>
+        <span style="--i:10">D</span>
+        <span style="--i:10">A</span>
+        <span style="--i:10">Y</span><br>
+        <span style="--i:10">G</span>
+        <span style="--i:10">O</span>
+        <span style="--i:10">U</span>
+        <span style="--i:10">S</span>
+        <span style="--i:10">I</span>
+     
+       </div> -->
 
-<div id="div1" class="drag-box" draggable="true">Div 1</div>
-<div id="div2" class="drag-box" ondrop="drop(event)" ondragover="allowDrop(event)">Div 2</div>
+       <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
 
-<script>
-    document.getElementById('div1').addEventListener('dragstart', function (event) {
-        event.dataTransfer.setData('text/plain', 'div1');
-    });
-
-    function allowDrop(event) {
-        event.preventDefault();
-    }
-
-    function drop(event) {
-        event.preventDefault();
-        var data = event.dataTransfer.getData('text/plain');
-        if (data === 'div1') {
-            alert('You dropped Div 1 onto Div 2!');
-        }
-    }
-</script>
-
+  
+<body>
+  <div id="typedtext"></div>
 </body>
+<script>
+  // set up text to print, each item in array is new line
+var aText = new Array(
+  "A small Poetry to Our Gousi Aunty...!",
+
+  " ",
+"To our aunty, a teacher so wise,",
+"A friend and mother in life's guise.",
+"Sisterly bond, a love that ties,",
+"Secret keeper, beneath the skies.",
+" ",
+"In every lesson, you've been our guide,",
+"Through the highs and lows, side by side.",
+"A rock in storms, in joy and pride,",
+"Happy birthday, let happiness abide.",
+" ",
+"Panipuri dates and laughter so sweet,",
+"Memories made with each bite we eat.",
+"May your goals soar, may dreams complete,",
+"On your birthday, our love's heartbeat.",
+" ",
+"May the candles flicker with dreams anew,",
+"Wishes granted, like morning dew.",
+"Happy birthday, dear aunty, to you,",
+"A treasure in our hearts so true.",
+"",
+"Wish you a Very Happy Birthday Gousiya aunty",
+
+  );
+  
+  var iSpeed = 100; // time delay of print out
+  var iIndex = 0; // start printing array at this posision
+  var iArrLength = aText[0].length; // the length of the text array
+  var iScrollAt = 20; // start scrolling up at this many lines
+   
+  var iTextPos = 0; // initialise text position
+  var sContents = ''; // initialise contents variable
+  var iRow; // initialise current row
+
+  function typewriter() {
+      sContents = ' ';
+      iRow = Math.max(0, iIndex - iScrollAt);
+      var destination = document.getElementById("typedtext");
+
+      while (iRow < iIndex) {
+        sContents += aText[iRow++] + '<br />';
+      }
+      
+      destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+
+      if (iTextPos++ == iArrLength) {
+        iTextPos = 0;
+        iIndex++;
+
+        if (iIndex != aText.length) {
+          iArrLength = aText[iIndex].length;
+          setTimeout(typewriter, 500);
+        } else {
+          // Redirect to another page after typing is completed
+          setTimeout(function() {
+            window.location.href = 'main.html';
+          }, 5000); // Adjust the delay (in milliseconds) as needed
+        }
+      } else {
+        setTimeout(typewriter, iSpeed);
+      }
+    }
+
+    // Play background music
+    var audio = new Audio('your_bg_music.mp3');
+    audio.play();
+
+    typewriter();
+</script>
 </html>

@@ -15,10 +15,45 @@
             align-items: center;
             justify-content: center;
             background: #000000;
-            transition: 5s ease;
+            /* transition: 5s ease; */
             align-items: last baseline;
+
+            animation: fadeIn 15s;
+  -webkit-animation: fadeIn 15s;
+  -moz-animation: fadeIn 15s;
+  -o-animation: fadeIn 15s;
+  -ms-animation: fadeIn 15s;
             
         }
+
+
+        
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
 
         .bb1{
             margin: 0;
@@ -33,7 +68,25 @@
             
             
 
+            
+            
+            
+
         }
+
+        @keyframes fade {
+          background  {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+          
+
+
+
 
         .bb2{
             margin: 0;
@@ -41,10 +94,16 @@
             display: flex;
             align-items: last baseline;
             justify-content: center;
-            background-image: url(body2.jpg);
+            background-image: url(body1.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            
+            animation: fadeIn 15s;
+  -webkit-animation: fadeIn 15s;
+  -moz-animation: fadeIn 15s;
+  -o-animation: fadeIn 15s;
+  -ms-animation: fadeIn 15s;
 
         }
 
@@ -302,15 +361,42 @@
 
         }
 
-        h2{
+        .text{
             color: white;
             text-transform: uppercase;
             animation: fade 5s linear;
             text-align: center;
 
+            animation: fadeIn 15s;
             padding: 2rem;
 
 
+        }
+
+        h2{
+            font-weight: 600;
+            font-size: 30px;
+            line-height:65px;
+            letter-spacing: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 400%;
+            animation: move 5s ease infinite;
+            background-image: linear-gradient( 68.7deg,  rgba(29,173,235,1) 13.2%, rgba(137,149,250,1) 29.8%, rgba(229,109,212,1) 48.9%, rgba(255,68,128,1) 68.2%, rgba(255,94,0,1) 86.4% );
+            
+        }
+
+        @keyframes move {
+            0%,100%{
+                background-position: 200% 0%;
+            }
+
+            50%{
+                background-position: 0% 200%;
+            }
         }
 
        
@@ -380,8 +466,10 @@
             z-index: 1;
         }
 
+        /* ========================================================================== */
 
-        @media only screen and (max-width: 580px){
+
+        @media only screen and (max-width: 600px){
 
             .cake{
             color: green;
@@ -408,9 +496,9 @@
 
     <div class="contain">
        
-        <div class="candle" id="candle" ondrop="dropCandle(event)" ondragover="allowDrop(event)">
-            <span class="thread"></span>
-            <span class="flames">
+        <div class="candle" id="candle" >
+            <span class="thread"  ></span>
+            <span class="flames"  >
                 <span class="glow"></span>
             </span>
             <span class="smoke-waves" id="smoke"></span>
@@ -425,7 +513,7 @@
     </div>
     <div class="contain2">
         <button  onclick="stopCandle()" id="stop"></button>
-        <button draggable="true" ondragstart="dragCandle(event)"  onclick="startCandle()" ="touchstartCandle(event)" ontouchmove="touchmoveCandle(event)" id="start"></button>
+        <button  onclick="startCandle(),showAlertAfter10Seconds()"  id="start"></button>
        
     </div>
 </div>
@@ -443,7 +531,91 @@
     </audio>
 
     <script>
+
+ // Prompt the user for their name
+ // Prompt the user for their name
+ var userName = prompt("What is your name?");
+
+ var password= prompt("enter the password ?")
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+// Check if the name is "gousiya"
+if (userName && userName.toLocaleLowerCase()!=="gousiya" && password && password.toLowerCase() !== "hellobaby"   ) {
+  // Redirect to a different page or display an error message
+  window.location.href = "error.html"; // Replace with the appropriate URL
+  alert("Hello, " + userName +  " this page is not for you");
+}
+else if(userName && userName.toLocaleLowerCase()==="gousiya" && password && password.toLowerCase() !== "hellobaby" ) {
+  var reEnter= prompt("invalid password "+"Enter valid password");
+
+  if (reEnter==="hellobaby"){
+    alert("Hello, " + userName +  " this page is not for you");
+
+  }
+  else{
+    alert("two chance left");
+    reEnter= prompt("invalid password "+"Enter valid password");
+    if (reEnter==="hellobaby"){
+    alert("Hello, " + userName +  " this page is not for you");
+     }
+     else{
+        alert("one last chance left");
+        reEnter= prompt("invalid password "+"Enter valid password");
+    if (reEnter==="hellobaby"){
+    alert("Hello, " + userName +  " this page is not for you");
+     }
+     else{
+        window.location.href = "error.html"; 
+
+     }
+        
+
+     }
+
+    
+}
+}
+
+
+else if(userName && userName.toLocaleLowerCase()!=="gousiya" && password && password.toLowerCase() === "hellobaby" ){
+ 
+    alert("sorry "+userName+" this is only for gousiya ");
+    window.location.href = "index.html";
+
+
+}
+else if(userName && userName.toLocaleLowerCase()==="gousiya" &&  password && password.toLowerCase() === "hellobaby" ) {
+    alert("Hello, " + userName + " we are waiting for you")
+    
+}
+
+else if(!userName || !password ){
+   
+    window.location.href = "index.html";
+    
+
+}
+
+// Continue with the rest of your code for the page
+
+// You can add additional content or logic for the page here
+
+
+
         let candleInterval;
+
+
+        
 
         function startCandle() {
             const flames = document.querySelector('.flames');
@@ -483,8 +655,8 @@
 
 
             setTimeout(function () {
-        window.location.href = "main.html";
-    }, 8000);
+        window.location.href = "demo.html";
+    }, 10000);
 
     clapSound.play();
 
@@ -501,47 +673,18 @@
         }
 
 
-        function allowDrop(event) {
-        event.preventDefault();
+        // Show alert after 10 seconds of opening the page
+    setTimeout(function() {
+      alert("please light the candle by click on matchstick");
+    }, 10000);
+
+    // Function to show alert after 10 seconds when the "Start Candle" button is clicked
+    function showAlertAfter10Seconds() {
+      setTimeout(function() {
+        alert("please blow the candle aunty");
+      }, 10000);
     }
 
-    function dragCandle(event) {
-        event.dataTransfer.setData("text", event.target.id);
-    }
-
-    function dropCandle(event) {
-        event.preventDefault();
-        var data = event.dataTransfer.getData("text");
-        var draggedElement = document.getElementById(data);
-
-        if (event.target.classList.contains("box")) {
-            // If dropped onto the thread span, trigger startCandle function
-            startCandle();
-        }
-    }
-
-    function dragCandle(event) {
-    event.dataTransfer.setData("text", event.target.id);
-}
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function touchstartCandle(event) {
-    event.preventDefault();
-    var touch = event.touches[0];
-    var element = document.elementFromPoint(touch.clientX, touch.clientY);
-
-    if (element.classList.contains("box")) {
-        // If touched onto the thread span, trigger startCandle function
-        startCandle();
-    }
-}
-
-function touchmoveCandle(event) {
-    event.preventDefault();
-}
 
     </script>
 </body>
