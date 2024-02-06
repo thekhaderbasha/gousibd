@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAPPY BIRTHDAY GOUSIYA AUNTY</title>
+    <title>WELCOME TO THE PARTY</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -65,8 +65,8 @@
             display: flex;
             align-items: last baseline;
             justify-content: center;
-            background-image: url(bggif11.jpg);
-            background-position: center;
+            background-image: url(body1.jpg);
+            /* background-position: center; */
             background-repeat: no-repeat;
             background-size: cover;
             
@@ -477,15 +477,57 @@
 
             .cake{
             color: green;
-            height: 18rem;
-            width: 20rem;
+            height: 16rem;
+            width: 18rem;
             /* background: #b60000; */
             background-image: url("cake5.png");
             background-position: center;
             background-size: cover;
         }
 
+
+        
+            h2{
+                padding: 2rem 4rem;
+                /* margin-bottom: 4rem; */
+            font-weight: 600;
+            font-size: 20px;
+            line-height:65px;
+            letter-spacing: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 400%;
+            animation: move 5s ease infinite;
+            background-image: linear-gradient( 68.7deg,  rgba(29,173,235,1) 13.2%, rgba(137,149,250,1) 29.8%, rgba(229,109,212,1) 48.9%, rgba(255,68,128,1) 68.2%, rgba(255,94,0,1) 86.4% );
+            
+            
         }
+
+        h3{
+                padding: 2rem 3rem;
+                /* margin-bottom: 2rem; */
+            font-weight: 600;
+            font-size: 20px;
+            line-height:65px;
+            letter-spacing: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 400%;
+            animation: move 5s ease infinite;
+            background-image: linear-gradient( 68.7deg,  rgb(255, 255, 255) 13.2%, rgb(147, 147, 147) 29.8%, rgb(0, 179, 255) 48.9%, rgb(0, 0, 0) 68.2%, rgb(66, 255, 192) 86.4% );
+            
+            
+        }
+
+        }
+
+        
 
        
         
@@ -494,7 +536,7 @@
 <body>
     <div class="container">
         <div class="text" >
-            <h2 id="text">WELOCOME TO THE PARTY</h2>
+            <h2 id="text"></h2>
 
         </div>
 
@@ -599,7 +641,9 @@ else if(!userName || !password ){
 
 
 
-        let candleInterval;
+       //
+
+       document.getElementById("text").innerText="welcome to the party "+userName
 
 
         
@@ -610,12 +654,14 @@ else if(!userName || !password ){
             candleSound.play();
             // document.body.style.backgroundColor="pink";
 
+            document.getElementById("text").innerText=" "
+
+
 
            
             document.body.classList.add("bb1");
 
 
-            document.getElementById("text").innerHTML="<h2>happy birth day aunty</h2>";
 
 
             setTimeout(() => {
@@ -646,6 +692,9 @@ else if(!userName || !password ){
             
             flames.style.display = 'none';
             clearInterval(candleInterval);
+
+            document.getElementById("text").innerHTML="<h3>happy birth day Gousiya </h3>";
+
 
 
             document.getElementById("box").innerHTML="<img src='monophy.gif'>";
