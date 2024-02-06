@@ -510,7 +510,7 @@
                 padding: 2rem 3rem;
                 /* margin-bottom: 2rem; */
             font-weight: 600;
-            font-size: 20px;
+            font-size: 24px;
             line-height:65px;
             letter-spacing: 5px;
             text-align: center;
@@ -675,8 +675,20 @@ else if(!userName || !password ){
         }
 
         function showAlertAndStopCandle() {
+
         // Show an alert after 10 seconds
-        alert("Please blow the candle, aunty!");
+
+
+        if(userName==="gousiya"){
+            alert("Please blow the candle, aunty!");
+
+        }
+        else if(userName!=="gousiya"){
+            alert("put your hands together for birth girl");
+
+
+        }
+       
 
         // Set another timeout to stop the candle after 2 seconds of closing the alert
         setTimeout(() => {
@@ -693,7 +705,7 @@ else if(!userName || !password ){
             flames.style.display = 'none';
             clearInterval(candleInterval);
 
-            document.getElementById("text").innerHTML="<h3>happy birth day Gousiya </h3>";
+            document.getElementById("text").innerHTML="<h3>happy birth day Gousiya aunty </h3>";
 
 
 
