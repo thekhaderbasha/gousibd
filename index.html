@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candle</title>
+    <title>HAPPY BIRTHDAY GOUSIYA AUNTY</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -14,7 +14,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #000000;
+            background-repeat: no-repeat;
+            background-image: url(bggif4.gif);
+            background-size: cover;
+            background-position: center;
+            /* background: #000000; */
             /* transition: 5s ease; */
             align-items: last baseline;
 
@@ -61,7 +65,7 @@
             display: flex;
             align-items: last baseline;
             justify-content: center;
-            background-image: url(body1.jpg);
+            background-image: url(bggif11.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -490,15 +494,15 @@
 <body>
     <div class="container">
         <div class="text" >
-            <h2 id="text">hello aunty...!</h2>
+            <h2 id="text">WELOCOME TO THE PARTY</h2>
 
         </div>
 
     <div class="contain">
        
-        <div class="candle" id="candle" >
+        <div class="candle" id="candle"  onclick="startCandle(),showAlertAfter10Seconds()" ondblclick="stopCandle()" >
             <span class="thread"  ></span>
-            <span class="flames"  >
+            <span class="flames"   >
                 <span class="glow"></span>
             </span>
             <span class="smoke-waves" id="smoke"></span>
@@ -511,11 +515,11 @@
     <div class="cake"   >
         
     </div>
-    <div class="contain2">
-        <button  onclick="stopCandle()" id="stop"></button>
+    <!-- <div class="contain2">
+        <button   onclick="stopCandle()" id="stop"></button>
         <button  onclick="startCandle(),showAlertAfter10Seconds()"  id="start"></button>
        
-    </div>
+    </div> -->
 </div>
    
 
@@ -532,8 +536,8 @@
 
     <script>
 
- // Prompt the user for their name
- // Prompt the user for their name
+
+ 
  var userName = prompt("What is your name?");
 
  var password= prompt("enter the password ?")
@@ -550,52 +554,35 @@
 
 
 // Check if the name is "gousiya"
-if (userName && userName.toLocaleLowerCase()!=="gousiya" && password && password.toLowerCase() !== "hellobaby"   ) {
-  // Redirect to a different page or display an error message
-  window.location.href = "error.html"; // Replace with the appropriate URL
-  alert("Hello, " + userName +  " this page is not for you");
-}
-else if(userName && userName.toLocaleLowerCase()==="gousiya" && password && password.toLowerCase() !== "hellobaby" ) {
-  var reEnter= prompt("invalid password "+"Enter valid password");
+ if(password && password.toLowerCase() !== "happy birthday gousiya" ) {
+  var reEnter= prompt("Wrong password "+ userName+ " Enter Correct password");
 
-  if (reEnter==="hellobaby"){
-    alert("Hello, " + userName +  " this page is not for you");
+  if (reEnter!=="happy birthday gousiya"){
+    alert("two chances left ");
+       reEnter= prompt("Enter Correct Password "+userName );
 
-  }
-  else{
-    alert("two chance left");
-    reEnter= prompt("invalid password "+"Enter valid password");
-    if (reEnter==="hellobaby"){
-    alert("Hello, " + userName +  " this page is not for you");
-     }
-     else{
-        alert("one last chance left");
-        reEnter= prompt("invalid password "+"Enter valid password");
-    if (reEnter==="hellobaby"){
-    alert("Hello, " + userName +  " this page is not for you");
-     }
-     else{
-        window.location.href = "error.html"; 
+       if(reEnter!=="happy birthday gousiya"){
+        alert("one chance left ");
+       reEnter= prompt("Enter Correct Password "+userName);
 
-     }
+       if(reEnter!=="happy birthday gousiya"){
+        alert("Sorry "+userName+" Password Not Correct ");
+
+         window.location.href = "error.html";
+
         
+       }
 
-     }
-
+ 
+    }
     
 }
 }
 
 
-else if(userName && userName.toLocaleLowerCase()!=="gousiya" && password && password.toLowerCase() === "hellobaby" ){
- 
-    alert("sorry "+userName+" this is only for gousiya ");
-    window.location.href = "index.html";
 
-
-}
-else if(userName && userName.toLocaleLowerCase()==="gousiya" &&  password && password.toLowerCase() === "hellobaby" ) {
-    alert("Hello, " + userName + " we are waiting for you")
+else if( password && password.toLowerCase() === "happy birthday gousiya" ) {
+    alert("Hello, " + userName + " welcome to the party ")
     
 }
 
@@ -634,7 +621,22 @@ else if(!userName || !password ){
             setTimeout(() => {
                 candleInterval = setInterval(blinkGlow, 500);
             }, 2000);
+
+
+            alertTimeout = setTimeout(() => {
+            showAlertAndStopCandle();
+        }, 15000);
         }
+
+        function showAlertAndStopCandle() {
+        // Show an alert after 10 seconds
+        alert("Please blow the candle, aunty!");
+
+        // Set another timeout to stop the candle after 2 seconds of closing the alert
+        setTimeout(() => {
+            stopCandle();
+        }, 1500);
+    }
 
         function stopCandle() {
             const flames = document.querySelector('.flames');
@@ -675,15 +677,15 @@ else if(!userName || !password ){
 
         // Show alert after 10 seconds of opening the page
     setTimeout(function() {
-      alert("please light the candle by click on matchstick");
+      alert("please click on the candle");
     }, 10000);
 
     // Function to show alert after 10 seconds when the "Start Candle" button is clicked
-    function showAlertAfter10Seconds() {
-      setTimeout(function() {
-        alert("please blow the candle aunty");
-      }, 10000);
-    }
+    // function showAlertAfter10Seconds() {
+    //   setTimeout(function() {
+    //     alert("please click on candle ");
+    //   }, 6000);
+    // }
 
 
     </script>

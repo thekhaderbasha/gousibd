@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Freehand&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+          *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+
+  body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #box{
+    height: 98%;
+    width: 97%;
+    /* background-color: aqua; */
+    background-image: url(poetry.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+  }
+
+  #typedtext{
+    margin-top: 35%;
+    margin-left: 15%;
+    color: rgba(0, 0, 0, 0.533);
+    text-shadow: 1px 1px 5px skyblue;
+    font-size: 1rem;
+    text-overflow: clip;
+    
+    font-family: 'Caveat', cursive;
+font-family: 'Freehand', cursive;
+
+
+  }
+
+
+  @media only screen and (max-width: 600px){
+    #typedtext{
+    margin-top: 35%;
+    margin-left: 15%;
+    color: rgba(0, 0, 0, 0.533);
+    text-shadow: 1px 1px 5px skyblue;
+    font-size: 1rem;
+    text-overflow: clip;
+    
+    font-family: 'Caveat', cursive;
+font-family: 'Freehand', cursive;
+
+
+  }
+
+  }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="typedtext"></div>
+        
+    
+      </div>
+
+      <audio id="Sound" loop>
+        <source src="demosound.mp3" type="audio/mp3">
+       
+    </audio>
+
+
+      <script>
+        
+  // set up text to print, each item in array is new line
+var aText = new Array(
+  "A small Poetry to Our Gousi Aunty...!",
+  " ",
+"To our aunty, a teacher so wise,",
+"A friend and mother in life's guise.",
+"Sisterly bond, a love that ties,",
+"Secret keeper, beneath the skies.",
+" ",
+"In every lesson, you've been our guide,",
+"Through the highs and lows, side by side.",
+"A rock in storms, in joy and pride,",
+"Happy birthday, let happiness abide.",
+" ",
+"Panipuri dates and laughter so sweet,",
+"Memories made with each bite we eat.",
+"May your goals soar, may dreams complete,",
+"On your birthday, our love's heartbeat.",
+" ",
+"May the candles flicker with dreams anew,",
+"Wishes granted, like morning dew.",
+"Happy birthday, dear aunty, to you,",
+"A treasure in our hearts so true.",
+"",
+"Wish you a Very Happy Birthday Gousiya aunty",
+
+  );
+  
+  var iSpeed = 50; // time delay of print out
+  var iIndex = 0; // start printing array at this posision
+  var iArrLength = aText[0].length; // the length of the text array
+  var iScrollAt = 20; // start scrolling up at this many lines
+   
+  var iTextPos = 0; // initialise text position
+  var sContents = ''; // initialise contents variable
+  var iRow; // initialise current row
+
+
+  function typewriter() {
+   
+      sContents = ' ';
+      iRow = Math.max(0, iIndex - iScrollAt);
+      var destination = document.getElementById("typedtext");
+
+      while (iRow < iIndex) {
+        sContents += aText[iRow++] + '<br />';
+
+
+      }
+      
+      destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+
+      if (iTextPos++ == iArrLength) {
+        iTextPos = 0;
+        iIndex++;
+
+        if (iIndex != aText.length) {
+          iArrLength = aText[iIndex].length;
+          setTimeout(typewriter, 10);
+        } else {
+          // Redirect to another page after typing is completed
+          setTimeout(function() {
+            window.location.href = 'main.html';
+          }, 5000); // Adjust the delay (in milliseconds) as needed
+        }
+      } else {
+        setTimeout(typewriter, iSpeed);
+      }
+
+      
+
+
+    }
+
+    typewriter();
+
+    var music=document.getElementById("sound");
+
+    music.play();
+
+
+      </script>
+
+
+    
+</body>
+</html>

@@ -3,61 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        #main {
-            width: 300px;
-            height: 200px;
-            border: 2px solid #000;
-            margin: 20px;
-            padding: 10px;
+        body {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
-        #dupe {
-            width: 100px;
-            height: 50px;
-            background-color: #66cc66;
-            cursor: move;
+        .box {
+            height: 99%;
+            width: 98%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .text {
+            opacity: 0;
+            animation: fadeInText 3s forwards;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInBackground {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-
-    <div id="main" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <p>Drop the "dupe" div here</p>
+    
+    <div class="box" id="backgroundBox">
+        <div class="text">Happy Birthday Aunty</div>
+       
+        <!-- Add other content here if needed -->
     </div>
-
-    <div id="dupe" draggable="true" ondragstart="drag(event)">Drag me!</div>
+    <audio id="Sound" loop>
+        <source src="demosound.mp3" type="audio/mp3">
+    </audio>
 
     <script>
-        var originalPosition;
+        const backgroundBox = document.getElementById('backgroundBox');
+        const text = document.querySelector('.text');
 
-        function allowDrop(event) {
-            event.preventDefault();
+        // Function to change background after the text animation completes
+        function changeBackground() {
+            backgroundBox.style.backgroundImage = 'url(gousi1.jpg)'; // Change this to your image URL
+            backgroundBox.style.animation = 'none'; // Reset animation
+            void backgroundBox.offsetWidth; // Trigger reflow
+            backgroundBox.style.animation = 'fadeInBackground 3s forwards'; // Reapply animation
         }
 
-        function drag(event) {
-            originalPosition = {
-                x: event.clientX,
-                y: event.clientY
-            };
-            event.dataTransfer.setData("text", event.target.id);
+        // Function to start the animation sequence
+        function startAnimation() {
+            text.style.animation = 'fadeInText 3s forwards'; // Start text animation
+            setTimeout(changeBackground, 3000); // Change background after text animation completes (3 seconds)
+            setTimeout(() => {
+                text.style.display = 'none'; // Hide text after animation completes
+            }, 3000); // Adjust timing to match text animation duration
         }
 
-        function drop(event) {
-            event.preventDefault();
-            var data = event.dataTransfer.getData("text");
-            var draggedElement = document.getElementById(data);
+        // Initial animation start after 5 seconds
+        setTimeout(startAnimation, 5000);
 
-            if (event.target.id === "main") {
-                event.target.appendChild(draggedElement);
-                alert("Happy Birthday!");
-
-                // Move the element back to its original position
-                draggedElement.style.position = 'absolute';
-                draggedElement.style.left = originalPosition.x - (draggedElement.offsetWidth / 2) + 'px';
-                draggedElement.style.top = originalPosition.y - (draggedElement.offsetHeight / 2) + 'px';
-            }
-        }
+        const Sound = document.getElementById('Sound');
+        Sound.play();
     </script>
 </body>
 </html>

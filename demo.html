@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>HAPPY BIRTHDAY GOUSIYA AUNTY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Freehand&display=swap" rel="stylesheet">
 <!-- ----------------------css name -------------------------------- -->
 <!-- <style>
 body{
@@ -56,61 +58,77 @@ body {
     box-sizing: border-box;
     
   }
-  body {
-    background-image: url(images/bg4.jpg);
-    background-repeat: no-repeat;
-    font-family: 'Waiting for the Sunrise', cursive; 
-    font-size:20px; 
-    margin: 10px 50px; 
-    color: rgb(0, 0, 0);
-    letter-spacing: 5px; 
-    font-weight: bold;
-    
+
+  body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
+
+  #box{
+    height: 98%;
+    width: 97%;
+    /* background-color: aqua; */
+    background-image: url(poetry.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+   
+  }
+
+  #typedtext{
+    margin-top: 35%;
+    margin-left: 15%;
+    color: rgba(0, 0, 0, 0.689);
+    text-shadow: 1px 1px 5px skyblue;
+    font-size: 1rem;
+    /* padding: 11rem 2rem; */
+    font-family: 'Caveat', cursive;
+font-family: 'Freehand', cursive;
+
+
+  }
+
 </style>
 <!-- -----------------------html name------------------------------------ -->
-<body>
-  <!-- <div class="typing-container">
-    <span id="sentence" class="sentence"></span>
-    <span class="input-cursor"></span>
-  </div>
-    Happy birthday gousi -->
-    <!-- <div class="giftbox">
-        <img src="images/giftbox.gif" alt=""> -->
-    <!-- </div> -->
-    <!-- <div class="waviy">
-        <span style="--i:1">H</span>
-        <span style="--i:2">A</span>
-        <span style="--i:3">P</span>
-        <span style="--i:4">P</span>
-        <span style="--i:5">Y</span>&nbsp;
-        <span style="--i:6">B</span>
-        <span style="--i:7">I</span>
-        <span style="--i:8">R</span>
-        <span style="--i:9">T</span>
-        <span style="--i:10">H</span>
-        <span style="--i:10">D</span>
-        <span style="--i:10">A</span>
-        <span style="--i:10">Y</span><br>
-        <span style="--i:10">G</span>
-        <span style="--i:10">O</span>
-        <span style="--i:10">U</span>
-        <span style="--i:10">S</span>
-        <span style="--i:10">I</span>
-     
-       </div> -->
 
-       <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
+
 
   
 <body>
-  <div id="typedtext"></div>
+  <div id="box">
+    <div id="typedtext"></div>
+    
+
+  </div>
+
+  <audio id="Sound" loop>
+    <source src="demomusic.mp3" type="audio/mp3">
+   
+</audio>
 </body>
+
+
+
+
+
+
+
+
+
+
+
 <script>
+
+
+
+
   // set up text to print, each item in array is new line
 var aText = new Array(
   "A small Poetry to Our Gousi Aunty...!",
-
   " ",
 "To our aunty, a teacher so wise,",
 "A friend and mother in life's guise.",
@@ -136,7 +154,7 @@ var aText = new Array(
 
   );
   
-  var iSpeed = 100; // time delay of print out
+  var iSpeed = 50; // time delay of print out
   var iIndex = 0; // start printing array at this posision
   var iArrLength = aText[0].length; // the length of the text array
   var iScrollAt = 20; // start scrolling up at this many lines
@@ -145,13 +163,17 @@ var aText = new Array(
   var sContents = ''; // initialise contents variable
   var iRow; // initialise current row
 
+
   function typewriter() {
+   
       sContents = ' ';
       iRow = Math.max(0, iIndex - iScrollAt);
       var destination = document.getElementById("typedtext");
 
       while (iRow < iIndex) {
         sContents += aText[iRow++] + '<br />';
+
+
       }
       
       destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
@@ -162,22 +184,30 @@ var aText = new Array(
 
         if (iIndex != aText.length) {
           iArrLength = aText[iIndex].length;
-          setTimeout(typewriter, 500);
+          setTimeout(typewriter, 10);
         } else {
           // Redirect to another page after typing is completed
           setTimeout(function() {
             window.location.href = 'main.html';
-          }, 5000); // Adjust the delay (in milliseconds) as needed
+          }, 3000); // Adjust the delay (in milliseconds) as needed
         }
       } else {
         setTimeout(typewriter, iSpeed);
       }
+
+      
+
+
     }
 
     // Play background music
-    var audio = new Audio('your_bg_music.mp3');
-    audio.play();
+
+    
+    Sound.play();
+   
+   
 
     typewriter();
+    
 </script>
 </html>
